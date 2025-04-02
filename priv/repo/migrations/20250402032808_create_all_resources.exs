@@ -1,4 +1,4 @@
-defmodule Nietflix.Repo.Migrations.CreateResources do
+defmodule Nietflix.Repo.Migrations.CreateAllResources do
   @moduledoc """
   Updates resources based on their most recent snapshots.
 

@@ -5,6 +5,6 @@ rm -rf priv/resource_snapshots || true
 
 mix ash.codegen create_all_resources
 mix do ash_postgres.drop --force-drop, ash_postgres.create, ash_postgres.migrate
-mix format
 
-mix ecto.seed
+mix format
+mix seed
