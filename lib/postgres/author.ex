@@ -1,5 +1,11 @@
 defmodule Postgres.Author do
-  use Postgres.Resource,
+  use Common.Author,
     otp_app: :nietflix,
-    domain: Postgres
+    domain: Postgres,
+    data_layer: AshPostgres.DataLayer
+
+  postgres do
+    table "author"
+    repo AshPostgres.Repo
+  end
 end
