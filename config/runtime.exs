@@ -1,6 +1,6 @@
 import Config
 
-config :logger, level: :debug
+config :logger, level: :info
 
 if config_env() == :prod do
   database_url =
