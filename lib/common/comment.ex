@@ -11,6 +11,10 @@ defmodule Nietflix.Comment do
         uuid_primary_key :id
       end
 
+      actions do
+        defaults [:read, :destroy, create: :*, update: :*]
+      end
+
       relationships do
         belongs_to :post, unquote(post)
       end

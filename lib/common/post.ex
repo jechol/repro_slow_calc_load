@@ -9,6 +9,12 @@ defmodule Nietflix.Post do
 
       attributes do
         uuid_primary_key :id
+
+        attribute :rating, :integer
+      end
+
+      actions do
+        defaults [:read, :destroy, create: :*, update: :*]
       end
 
       relationships do

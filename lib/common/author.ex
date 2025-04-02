@@ -11,8 +11,27 @@ defmodule Nietflix.Author do
         uuid_primary_key :id
       end
 
+      actions do
+        defaults [:read, :destroy, create: :*, update: :*]
+      end
+
       relationships do
         has_many :posts, unquote(post)
+      end
+
+      calculations do
+        calculate :avg_post_rating, :float do
+          load :posts
+
+          calculation fn authors, _ctx ->
+            authors
+            |> Enum.map(fn %{posts: posts} ->
+              count = posts |> Enum.count()
+              sum = posts |> Enum.map(& &1.rating) |> Enum.sum()
+              (sum / count) |> Float.round(2)
+            end)
+          end
+        end
       end
     end
   end
