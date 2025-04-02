@@ -25,6 +25,7 @@ defmodule Nietflix.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:benchee, "~> 1.0"},
       {:sourceror, "~> 1.7", only: [:dev, :test]},
       {:ash_postgres, "~> 2.0"},
       {:ash, "~> 3.0"},
