@@ -1,6 +1,9 @@
 import Config
 
-config :nietflix, ecto_repos: [Nietflix.Repo]
+config :nietflix,
+  ecto_repos: [Nietflix.Repo],
+  ash_domains: [Ets, Postgres],
+  base_resources: [Postgres.Resource, Ets.Resource]
 
 config :ash,
   allow_forbidden_field_for_relationships_by_default?: true,
