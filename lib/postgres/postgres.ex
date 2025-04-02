@@ -3,5 +3,8 @@ defmodule Postgres do
     otp_app: :nietflix
 
   resources do
+    resource Postgres.Author
+    resource Postgres.Post
+    resource Postgres.Comment
   end
 end
