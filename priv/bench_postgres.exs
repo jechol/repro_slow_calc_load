@@ -1,14 +1,20 @@
-alias Nietflix.Postgres.{Author, Post}
+alias Nietflix.Postgres.{Author, Post, Comment}
 
-ets_authors =
-  1..100
+authors =
+  1..10
   |> Enum.map(fn _ ->
     author = Author.create!(%{}, [])
 
-    1..100
+    1..10
     |> Enum.each(fn i ->
       rating = div(i, 5)
-      Post.create!(%{author_id: author.id, rating: rating})
+      post = Post.create!(%{author_id: author.id, rating: rating})
+
+      1..10
+      |> Enum.each(fn i ->
+        rating = div(i, 5)
+        Comment.create!(%{post_id: post.id, rating: rating})
+      end)
     end)
 
     author
@@ -16,9 +22,9 @@ ets_authors =
 
 Benchee.run(%{
   "Author.avg_post_rating" => fn ->
-    ets_authors |> Ash.load!(:avg_post_rating)
+    authors |> Ash.load!(:avg_post_rating)
   end,
   "Author.avg_post_rating_manual_load" => fn ->
-    ets_authors |> Ash.load!(:avg_post_rating_manual_load)
+    authors |> Ash.load!(:avg_post_rating_manual_load)
   end
 })
