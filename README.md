@@ -14,6 +14,8 @@ mix reset
 mix run bench/bench_postgres.exs
 ```
 
+Note: There is also an ETS benchmark available at `mix run bench/bench_ets.exs`, but it's not meaningful for performance comparison due to missing indexes.
+
 ## Expected Results
 
 The benchmark results will show that DSL-based calculation loading is approximately 10 times slower than manual calculation loading.
