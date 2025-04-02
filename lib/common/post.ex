@@ -57,7 +57,7 @@ defmodule Nietflix.Post do
 
             posts
             |> Enum.map(fn post ->
-              comments = post_comments |> Map.get(post.id, [])
+              comments = post_comments |> Map.fetch!(post.id)
 
               count = comments |> Enum.count()
               sum = comments |> Enum.map(& &1.rating) |> Enum.sum()
