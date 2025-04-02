@@ -20,7 +20,9 @@ defmodule Nietflix.Comment do
       end
 
       relationships do
-        belongs_to :post, unquote(post), public?: true
+        belongs_to :post, unquote(post),
+          attribute_public?: true,
+          attribute_writable?: true
       end
     end
   end
