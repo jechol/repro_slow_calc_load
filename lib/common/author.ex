@@ -25,6 +25,6 @@ defmodule Postgres.Author do
 
   postgres do
     table "author"
-    repo AshPostgres.Repo
+    repo Nietflix.Repo
   end
 end

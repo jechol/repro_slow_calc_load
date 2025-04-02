@@ -25,6 +25,6 @@ defmodule Postgres.Comment do
 
   postgres do
     table "comment"
-    repo AshPostgres.Repo
+    repo Nietflix.Repo
   end
 end

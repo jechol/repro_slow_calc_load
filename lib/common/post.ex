@@ -25,6 +25,6 @@ defmodule Postgres.Post do
 
   postgres do
     table "post"
-    repo AshPostgres.Repo
+    repo Nietflix.Repo
   end
 end
