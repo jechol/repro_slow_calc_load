@@ -51,5 +51,9 @@ defmodule Nietflix.Postgres.Comment do
   postgres do
     table "comment"
     repo Nietflix.Repo
+
+    custom_indexes do
+      index [:post_id]
+    end
   end
 end

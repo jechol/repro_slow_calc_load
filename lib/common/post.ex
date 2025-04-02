@@ -87,5 +87,9 @@ defmodule Nietflix.Postgres.Post do
   postgres do
     table "post"
     repo Nietflix.Repo
+
+    custom_indexes do
+      index [:author_id]
+    end
   end
 end
