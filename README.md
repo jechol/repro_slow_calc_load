@@ -1,21 +1,34 @@
-# Nietflix
+# Ash Calculation Load Performance Issue Reproduction
 
-**TODO: Add description**
+This repository demonstrates a performance issue in the Ash framework where calculation DSL-based relationship loading is approximately 10 times slower than manual loading by anonymous function.
 
-## Installation
+## Reproduction Steps
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `nietflix` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:nietflix, "~> 0.1.0"}
-  ]
-end
+1. Initialize database and seed data:
+```bash
+mix reset
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/nietflix>.
+2. Run benchmark:
+```bash
+mix run bench/bench_postgres.exs
+```
 
+## Expected Results
+
+The benchmark results will show that DSL-based calculation loading is approximately 10 times slower than manual calculation loading.
+
+## Data Structure
+
+- Author: Author information
+- Post: Post information (1:N relationship with Author)
+- Comment: Comment information (1:N relationship with Post)
+
+There are 1000 Authors, each Author has 5 Posts, and each Post has 5 Comments.
+
+## Environment
+
+- Elixir ~> 1.18
+- Ash ~> 3.0
+- AshPostgres ~> 2.0
+- PostgreSQL >= 16.0.0
