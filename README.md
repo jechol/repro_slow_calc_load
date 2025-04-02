@@ -11,7 +11,8 @@ mix reset
 
 2. Run benchmark:
 ```bash
-mix run bench/bench_postgres.exs
+mix run bench/bench_postgres_nested.exs # 10 times slow
+mix run bench/bench_postgres.exs # 3 times slow
 ```
 
 Note: There is also an ETS benchmark available at `mix run bench/bench_ets.exs`, but it's not meaningful for performance comparison due to missing indexes.
