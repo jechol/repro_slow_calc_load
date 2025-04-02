@@ -1,14 +1,18 @@
 defmodule Nietflix.Comment do
   defmacro __using__(opts) do
-    {author, opts} = opts |> Keyword.pop(:author)
+    {_author, opts} = opts |> Keyword.pop(:author)
     {post, opts} = opts |> Keyword.pop(:post)
-    comment = __CALLER__.module
+    _comment = __CALLER__.module
 
     quote do
       use Ash.Resource, unquote(opts)
 
       attributes do
         uuid_primary_key :id
+      end
+
+      relationships do
+        belongs_to :post, unquote(post)
       end
     end
   end

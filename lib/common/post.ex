@@ -1,7 +1,7 @@
 defmodule Nietflix.Post do
   defmacro __using__(opts) do
     {author, opts} = opts |> Keyword.pop(:author)
-    post = __CALLER__.module
+    _post = __CALLER__.module
     {comment, opts} = opts |> Keyword.pop(:comment)
 
     quote do
@@ -9,6 +9,11 @@ defmodule Nietflix.Post do
 
       attributes do
         uuid_primary_key :id
+      end
+
+      relationships do
+        belongs_to :author, unquote(author)
+        has_many :comments, unquote(comment)
       end
     end
   end
