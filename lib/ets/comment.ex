@@ -1,5 +1,6 @@
 defmodule Ets.Comment do
-  use Ets.Resource,
+  use Common.Comment,
     otp_app: :nietflix,
-    domain: Ets
+    domain: Ets,
+    data_layer: Ash.DataLayer.Ets
 end

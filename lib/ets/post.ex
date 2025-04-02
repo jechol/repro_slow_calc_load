@@ -1,5 +1,6 @@
 defmodule Ets.Post do
-  use Ets.Resource,
+  use Common.Post,
     otp_app: :nietflix,
-    domain: Ets
+    domain: Ets,
+    data_layer: Ash.DataLayer.Ets
 end
