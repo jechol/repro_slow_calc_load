@@ -10,15 +10,19 @@ defmodule Nietflix.Post do
       attributes do
         uuid_primary_key :id
 
-        attribute :rating, :integer
+        attribute :rating, :integer, public?: true
       end
 
       actions do
-        defaults [:read, :destroy, create: :*, update: :*]
+        defaults [:read, create: :*]
+      end
+
+      code_interface do
+        define :create
       end
 
       relationships do
-        belongs_to :author, unquote(author)
+        belongs_to :author, unquote(author), public?: true
         has_many :comments, unquote(comment)
       end
     end

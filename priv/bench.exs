@@ -1,17 +1,19 @@
 alias Nietflix.{Ets, Postgres}
 
-authors =
-  1..100
+ets_authors =
+  1..10
   |> Enum.map(fn _ ->
-    Ets.Author.create!()
+    author = Ets.Author.create!(%{}, [])
+
+    1..10
+    |> Enum.each(fn i ->
+      rating = div(i, 5)
+      Ets.Post.create!(%{author_id: author.id, rating: rating})
+    end)
+
+    author
   end)
 
-authors
-|> Enum.each(fn author ->
-  Ets.Post.create!(%{author_id: author.id})
-end)
-
 Benchee.run(%{
-  "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
+  "Author.avg_post_rating" => fn -> ets_authors |> Ash.load!(:avg_post_rating) end
 })

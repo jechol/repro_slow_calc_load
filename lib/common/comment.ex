@@ -12,11 +12,15 @@ defmodule Nietflix.Comment do
       end
 
       actions do
-        defaults [:read, :destroy, create: :*, update: :*]
+        defaults [:read, create: :*]
+      end
+
+      code_interface do
+        define :create
       end
 
       relationships do
-        belongs_to :post, unquote(post)
+        belongs_to :post, unquote(post), public?: true
       end
     end
   end

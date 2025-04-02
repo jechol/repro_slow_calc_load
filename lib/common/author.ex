@@ -12,7 +12,11 @@ defmodule Nietflix.Author do
       end
 
       actions do
-        defaults [:read, :destroy, create: :*, update: :*]
+        defaults [:read, create: :*]
+      end
+
+      code_interface do
+        define :create
       end
 
       relationships do
@@ -21,7 +25,7 @@ defmodule Nietflix.Author do
 
       calculations do
         calculate :avg_post_rating, :float do
-          load :posts
+          load posts: :rating
 
           calculation fn authors, _ctx ->
             authors
