@@ -39,7 +39,8 @@ defmodule Nietflix.MixProject do
     [
       test: ["ash.setup --quiet", "test"],
       setup: "ash.setup",
-      seed: ["run -e Nietflix.Seed.run()"]
+      seed: ["run -e Nietflix.Seed.run()"],
+      bench: ["run priv/bench.exs"]
     ]
   end
 
