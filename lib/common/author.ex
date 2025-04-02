@@ -1,5 +1,9 @@
-defmodule Common.Author do
+defmodule Nietflix.Author do
   defmacro __using__(opts) do
+    author = __CALLER__.module
+    {post, opts} = opts |> Keyword.pop(:post)
+    {comment, opts} = opts |> Keyword.pop(:comment)
+
     quote do
       use Ash.Resource, unquote(opts)
 
@@ -10,18 +14,22 @@ defmodule Common.Author do
   end
 end
 
-defmodule Ets.Author do
-  use Common.Author,
+defmodule Nietflix.Ets.Author do
+  use Nietflix.Author,
     otp_app: :nietflix,
-    domain: Ets,
-    data_layer: Ash.DataLayer.Ets
+    domain: Nietflix.Ets,
+    data_layer: Ash.DataLayer.Ets,
+    post: Nietflix.Ets.Post,
+    comment: Nietflix.Ets.Comment
 end
 
-defmodule Postgres.Author do
-  use Common.Author,
+defmodule Nietflix.Postgres.Author do
+  use Nietflix.Author,
     otp_app: :nietflix,
-    domain: Postgres,
-    data_layer: AshPostgres.DataLayer
+    domain: Nietflix.Postgres,
+    data_layer: AshPostgres.DataLayer,
+    post: Nietflix.Postgres.Post,
+    comment: Nietflix.Postgres.Comment
 
   postgres do
     table "author"

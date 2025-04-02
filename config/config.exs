@@ -2,8 +2,7 @@ import Config
 
 config :nietflix,
   ecto_repos: [Nietflix.Repo],
-  ash_domains: [Ets, Postgres],
-  base_resources: [Postgres.Resource, Ets.Resource]
+  ash_domains: [Nietflix.Ets, Nietflix.Postgres]
 
 config :ash,
   allow_forbidden_field_for_relationships_by_default?: true,
