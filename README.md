@@ -31,7 +31,7 @@ There are 1000 Authors, each Author has 5 Posts, and each Post has 5 Comments.
 
 ## Environment
 
-- Elixir ~> 1.18
-- Ash ~> 3.0
-- AshPostgres ~> 2.0
-- PostgreSQL >= 16.0.0
+- Elixir: 1.18.1
+- Ash: 3.5.2
+- AshPostgres: 2.5.14
+- PostgreSQL: 16.6.0
