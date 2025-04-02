@@ -35,7 +35,11 @@ defmodule Nietflix.MixProject do
   end
 
   defp aliases() do
-    [test: ["ash.setup --quiet", "test"], setup: "ash.setup"]
+    [
+      test: ["ash.setup --quiet", "test"],
+      setup: "ash.setup",
+      seed: ["run -e Nietflix.Seed.run()"]
+    ]
   end
 
   defp elixirc_paths(:test),
