@@ -10,19 +10,51 @@ defmodule Nietflix.Repo.Migrations.CreateAllResources do
   def up do
     create table(:post, primary_key: false) do
       add(:id, :uuid, null: false, default: fragment("gen_random_uuid()"), primary_key: true)
+      add(:rating, :bigint)
+      add(:author_id, :uuid)
     end
 
     create table(:comment, primary_key: false) do
       add(:id, :uuid, null: false, default: fragment("gen_random_uuid()"), primary_key: true)
+
+      add(
+        :post_id,
+        references(:post,
+          column: :id,
+          name: "comment_post_id_fkey",
+          type: :uuid,
+          prefix: "public"
+        )
+      )
     end
 
     create table(:author, primary_key: false) do
       add(:id, :uuid, null: false, default: fragment("gen_random_uuid()"), primary_key: true)
     end
+
+    alter table(:post) do
+      modify(
+        :author_id,
+        references(:author,
+          column: :id,
+          name: "post_author_id_fkey",
+          type: :uuid,
+          prefix: "public"
+        )
+      )
+    end
   end
 
   def down do
+    drop(constraint(:post, "post_author_id_fkey"))
+
+    alter table(:post) do
+      modify(:author_id, :uuid)
+    end
+
     drop(table(:author))
+
+    drop(constraint(:comment, "comment_post_id_fkey"))
 
     drop(table(:comment))
 

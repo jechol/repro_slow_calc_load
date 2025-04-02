@@ -1,14 +1,14 @@
-alias Nietflix.{Ets, Postgres}
+alias Nietflix.Postgres.{Author, Post}
 
 ets_authors =
-  1..10
+  1..100
   |> Enum.map(fn _ ->
-    author = Ets.Author.create!(%{}, [])
+    author = Author.create!(%{}, [])
 
     1..100
     |> Enum.each(fn i ->
       rating = div(i, 5)
-      Ets.Post.create!(%{author_id: author.id, rating: rating})
+      Post.create!(%{author_id: author.id, rating: rating})
     end)
 
     author

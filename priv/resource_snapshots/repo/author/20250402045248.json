@@ -15,8 +15,8 @@
   "check_constraints": [],
   "custom_indexes": [],
   "custom_statements": [],
-  "has_create_action": false,
-  "hash": "7BDE249C878F81F90D36F7EE3810BE4541D4F0F4F0BA8743386F4DA2445097F3",
+  "has_create_action": true,
+  "hash": "E141104A6E8B8B6C341E8B7F4BE09170B96F6C9D16C8C0C72B2CA58048CBEA52",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -25,5 +25,5 @@
   },
   "repo": "Elixir.Nietflix.Repo",
   "schema": null,
-  "table": "comment"
+  "table": "author"
 }
