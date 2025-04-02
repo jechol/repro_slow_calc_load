@@ -16,6 +16,7 @@ defmodule Nietflix.Repo.Migrations.CreateAllResources do
 
     create table(:comment, primary_key: false) do
       add(:id, :uuid, null: false, default: fragment("gen_random_uuid()"), primary_key: true)
+      add(:rating, :bigint)
 
       add(
         :post_id,

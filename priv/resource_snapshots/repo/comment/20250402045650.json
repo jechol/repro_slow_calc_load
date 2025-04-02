@@ -15,6 +15,16 @@
       "default": "nil",
       "generated?": false,
       "primary_key?": false,
+      "references": null,
+      "size": null,
+      "source": "rating",
+      "type": "bigint"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "primary_key?": false,
       "references": {
         "deferrable": false,
         "destination_attribute": "id",
@@ -45,7 +55,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "D6A2033FB56F66A1A5068F7D98A529C0D831DF18C03AA8492FF0000C301CF2E7",
+  "hash": "585FA5A13BECD76703A5065C4DE61DFB66D092DDA27719FB2AB0B45C50EA7F7E",
   "identities": [],
   "multitenancy": {
     "attribute": null,

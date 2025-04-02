@@ -6,9 +6,12 @@ defmodule Nietflix.Comment do
 
     quote do
       use Ash.Resource, unquote(opts)
+      require Ash.Query
 
       attributes do
         uuid_primary_key :id
+
+        attribute :rating, :integer, public?: true
       end
 
       actions do
