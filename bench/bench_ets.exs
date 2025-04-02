@@ -21,10 +21,10 @@ authors =
   end)
 
 Benchee.run(%{
-  "Author.avg_comment_rating" => fn ->
+  "Author.posts.avg_comment_rating" => fn ->
     authors |> Ash.load!([posts: :avg_comment_rating])
   end,
-  "Author.avg_comment_rating_manual_load" => fn ->
+  "Author.posts.avg_comment_rating_manual_load" => fn ->
     authors |> Ash.load!([posts: :avg_comment_rating_manual_load])
   end
 })

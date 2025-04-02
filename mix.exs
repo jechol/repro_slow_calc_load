@@ -45,9 +45,7 @@ defmodule Nietflix.MixProject do
         "ash_postgres.create",
         "ash_postgres.migrate",
         "seed"
-      ],
-      bench_ets: ["run priv/bench_ets.exs"],
-      bench_postgres: ["run priv/bench_postgres.exs"]
+      ]
     ]
   end
 
