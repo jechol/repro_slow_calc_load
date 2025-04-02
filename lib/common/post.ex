@@ -23,7 +23,10 @@ defmodule Nietflix.Post do
       end
 
       relationships do
-        belongs_to :author, unquote(author), attribute_public?: true, attribute_writable?: true
+        belongs_to :author, unquote(author),
+          attribute_public?: true,
+          attribute_writable?: true
+
         has_many :comments, unquote(comment)
       end
 

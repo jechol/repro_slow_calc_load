@@ -1,7 +1,7 @@
-alias Nietflix.Postgres.{Author, Post, Comment}
+alias Nietflix.Ets.{Author, Post, Comment}
 
 authors =
-  1..1000
+  1..100
   |> Enum.map(fn _ ->
     author = Author.create!(%{}, [])
 

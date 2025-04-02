@@ -20,48 +20,49 @@ defmodule Nietflix.Author do
 
       code_interface do
         define :create
+        define :read
       end
 
       relationships do
         has_many :posts, unquote(post)
       end
 
-      calculations do
-        calculate :avg_post_rating, :float do
-          load posts: :rating
+      # calculations do
+      #   calculate :avg_post_rating, :float do
+      #     load posts: :rating
 
-          calculation fn authors, _ctx ->
-            authors
-            |> Enum.map(fn %{posts: posts} ->
-              count = posts |> Enum.count()
-              sum = posts |> Enum.map(& &1.rating) |> Enum.sum()
-              (sum / count) |> Float.round(2)
-            end)
-          end
-        end
+      #     calculation fn authors, _ctx ->
+      #       authors
+      #       |> Enum.map(fn %{posts: posts} ->
+      #         count = posts |> Enum.count()
+      #         sum = posts |> Enum.map(& &1.rating) |> Enum.sum()
+      #         (sum / count) |> Float.round(2)
+      #       end)
+      #     end
+      #   end
 
-        calculate :avg_post_rating_manual_load, :float do
-          calculation fn authors, _ctx ->
-            author_ids = authors |> Enum.map(& &1.id)
+      #   calculate :avg_post_rating_manual_load, :float do
+      #     calculation fn authors, _ctx ->
+      #       author_ids = authors |> Enum.map(& &1.id)
 
-            author_posts =
-              unquote(post)
-              |> Ash.Query.for_read(:read)
-              |> Ash.Query.filter(author.id in ^author_ids)
-              |> Ash.read!()
-              |> Enum.group_by(& &1.author_id)
+      #       author_posts =
+      #         unquote(post)
+      #         |> Ash.Query.for_read(:read)
+      #         |> Ash.Query.filter(author.id in ^author_ids)
+      #         |> Ash.read!()
+      #         |> Enum.group_by(& &1.author_id)
 
-            authors
-            |> Enum.map(fn author ->
-              posts = author_posts |> Map.get(author.id, [])
+      #       authors
+      #       |> Enum.map(fn author ->
+      #         posts = author_posts |> Map.get(author.id, [])
 
-              count = posts |> Enum.count()
-              sum = posts |> Enum.map(& &1.rating) |> Enum.sum()
-              (sum / count) |> Float.round(2)
-            end)
-          end
-        end
-      end
+      #         count = posts |> Enum.count()
+      #         sum = posts |> Enum.map(& &1.rating) |> Enum.sum()
+      #         (sum / count) |> Float.round(2)
+      #       end)
+      #     end
+      #   end
+      # end
     end
   end
 end
